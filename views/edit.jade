@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  div.page-header    
+    form.form-horizontal(action="/update", method="post")
+      div.form-group.col-sm-10
+        input.form-control.hidden(value="#{todo._id}", name="id")
+        input.form-control(type="text", name="content", placeholder="Content", value="#{todo.content}")
+      div.form-group
+        button.btn.btn-default(type="submit") Update

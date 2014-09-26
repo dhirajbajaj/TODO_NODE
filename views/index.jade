@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  - each todo in todos
+    div.panel.panel-default
+      div.panel-body
+        h3= todo.content
+          small.pull-right
+            a(href='/ed/#{todo._id}') edit
+            &nbsp;
+            a(href='/del/#{todo._id}') delete

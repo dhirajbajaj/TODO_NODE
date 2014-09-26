@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  div.page-header
+   form.form-horizontal(action="/create", method="post")
+    div.form-group.col-sm-10
+      input.form-control(type="text", name="content", placeholder="Content")
+    div.form-group
+      button.btn.btn-default(type="submit") Add  
