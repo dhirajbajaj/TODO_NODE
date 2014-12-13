@@ -21,4 +21,9 @@ html
               a(href="/new") ADD
 
     .container(style= 'padding-top:60px;' )
+      if (msg)
+        .alert.alert-dismissable.alert-success
+          button.close(type="button" data-dismiss="alert") ×
+          strong= msg
+        
       block content

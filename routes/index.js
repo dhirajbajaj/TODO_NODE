@@ -2,16 +2,20 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require( 'mongoose' );
 var Todo     = mongoose.model( 'Todo' );
+var User =  require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res) {
   // show all todos relative to user  
-  Todo.find().sort('-updated_at').find( function ( err, todos, count ){
-    res.render( 'index', {
-      title : ': ALL',
-      todos : todos
-    });
-  });
+  User.all(function( err, users, count ){
+    res.render( 'index', {
+      title : ': ALL',
+      users : users,
+      count : count,
+      msg : req.query.msg
+    });
+  });
+
 });
 
 // new todo form
@@ -42,10 +46,13 @@ router.post('/update', function(req, res) {
 
 // delete todo
 router.get('/del/:id', function(req, res) {
-  Todo.findById(req.params.id, function (err, todo) {
-    todo.remove( function ( err, todo ){
-      res.redirect( '/' );
-    });
+  User.delete(req.params.id, function (err, todo) {
+    if (err) {
+      res.redirect( '/?msg=Error occurred' );
+    }else{
+      res.redirect( '/?msg=Deleted sucessfully' );
+      // res.send('user.saved ' + user.pnr);
+    }
   });
 });
 
@@ -57,6 +64,19 @@ router.post('/create', function(req, res) {
     updated_at : Date.now()
   }).save( function( err, todo, count ){
     res.redirect( '/' );
+  });
+});
+
+//create new todo
+router.post('/pnrcreate', function(req, res) {
+  // add TODO's to db
+  User.create( { pnr : req.body.pnr, mobile : req.body.mobile, updated_at : Date.now() },  function( err, user ){
+    if (err) {
+      res.redirect( '/?msg=Pnr Request error #{err}' );
+    }else{
+      res.redirect( '/?msg=Pnr request accepted' );
+      // res.send('user.saved ' + user.pnr);
+    }
   });
 });
 

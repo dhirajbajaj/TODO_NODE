@@ -1,11 +1,22 @@
 extends layout
 
 block content
-  - each todo in todos
+  div.page-header
+   form.form-horizontal(action="/pnrcreate", method="post")
+    .row
+      .col-md-5
+        input.form-control(type="text", name="pnr", placeholder="Pnr Number")
+      .col-md-5
+        input.form-control(type="text", name="mobile", placeholder="Mobile Number")
+      .col-md-2
+        button.btn.btn-primary.btn-block(type="submit") Track
+
+  - each user in users
     div.panel.panel-default
       div.panel-body
-        h3= todo.content
+        h3= user.pnr
+        h3= user.mobile
           small.pull-right
-            a(href='/ed/#{todo._id}') edit
+            a(href='/ed/#{user._id}') edit
             &nbsp;
-            a(href='/del/#{todo._id}') delete
+            a(href='/del/#{user._id}') delete
