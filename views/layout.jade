@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    title #TODOS #{title}
+    title #TRACK_PNR #{title}
     link(href="/stylesheets/bootstrap.min.css", rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
@@ -14,7 +14,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href="/") #TODOS #{title}
+          a.navbar-brand(href="/") #TRACK_PNR #{title}
         .collapse.navbar-collapse.navbar-ex1-collapse
           ul.nav.navbar-nav.navbar-right
             li
@@ -22,7 +22,7 @@ html
 
     .container(style= 'padding-top:60px;' )
       if (msg)
-        .alert.alert-dismissable.alert-success
+        .alert.alert-dismissable.alert-info
           button.close(type="button" data-dismiss="alert") ×
           strong= msg
         

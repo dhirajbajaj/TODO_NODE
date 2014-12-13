@@ -72,7 +72,7 @@ router.post('/pnrcreate', function(req, res) {
   // add TODO's to db
   User.create( { pnr : req.body.pnr, mobile : req.body.mobile, updated_at : Date.now() },  function( err, user ){
     if (err) {
-      res.redirect( '/?msg=Pnr Request error #{err}' );
+      res.redirect( '/?msg=Request error --> ' + err );
     }else{
       res.redirect( '/?msg=Pnr request accepted' );
       // res.send('user.saved ' + user.pnr);
