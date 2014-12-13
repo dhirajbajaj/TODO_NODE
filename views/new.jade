@@ -1,9 +1,12 @@
 extends layout
 
 block content
+  hr
   div.page-header
-   form.form-horizontal(action="/create", method="post")
-    div.form-group.col-sm-10
-      input.form-control(type="text", name="content", placeholder="Content")
+   form.form-horizontal(action="/pnrcreate", method="post")
+    div.form-group.col-sm-5
+      input.form-control(type="text", name="pnr", placeholder="Pnr Number")
+    div.form-group.col-sm-5
+      input.form-control(type="text", name="mobile", placeholder="Mobile Number")
     div.form-group
       button.btn.btn-default(type="submit") Add  

@@ -7,5 +7,13 @@ var Todo = new Schema({
     updated_at : Date
 });
  
+var User = new Schema({
+    mobile     : { type: Number, default: 0, required: true },
+    pnr        : { type: Number, default: 0, required: true },
+    pnrstatus  : Object,
+    updated_at : Date
+});
+ 
 mongoose.model( 'Todo', Todo );
+mongoose.model( 'User', User );
 mongoose.connect( 'mongodb://localhost/express-myapp' );
