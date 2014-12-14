@@ -15,8 +15,6 @@ module.exports = {
         });
     },
     create: function(data, callback) {
-        // do whatever with incoming data here
-        // data = modifyDataInSomeWay(data);
         var newUser = new User(data);
         newUser.save(function(err, savedUser) {
             // some logic here

@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require( 'mongoose' );
 var Todo     = mongoose.model( 'Todo' );
 var User =  require('../models/user');
+var API =  require('../models/api');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -48,7 +49,7 @@ router.post('/update', function(req, res) {
 router.get('/del/:id', function(req, res) {
   User.delete(req.params.id, function (err, todo) {
     if (err) {
-      res.redirect( '/?msg=Error occurred' );
+      res.redirect( '/?msg=Error occurred' + err );
     }else{
       res.redirect( '/?msg=Deleted sucessfully' );
       // res.send('user.saved ' + user.pnr);
@@ -74,7 +75,9 @@ router.post('/pnrcreate', function(req, res) {
     if (err) {
       res.redirect( '/?msg=Request error --> ' + err );
     }else{
-      res.redirect( '/?msg=Pnr request accepted' );
+      API.pnr_status(user, function(error, response, body){
+        res.redirect( '/?msg=Pnr request accepted' );
+      });
       // res.send('user.saved ' + user.pnr);
     }
   });
